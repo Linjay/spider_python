@@ -5,59 +5,15 @@ spider_python
 
 程序依赖以下第三方Python包：requests, BeautifulSoup, redis-py
     
-爬虫根据自定义关键字先对校招信息进行过滤，然后存储到本机redis中。本机若有lamp环境，可直接从redis读取信息到web页面上即可，lamp环境中的php程序示例如下：
+扩展自某大神https://github.com/lizherui/spider_python
 
-    <!DOCTYPE html>
-    <html>
-    <head>
-    <title>Welcome to spider!</title>
-    <style>
-        body {
-            width: 35em;
-            margin: 0 auto;
-        }
-        a:visited { color: red; }
-    </style>
-    </head>
-    <body>
-    <?php
-    $rs_ip = '127.0.0.1';
-    $rs_port = 6379;
-    $rs = new Redis();
-    $rs->connect($rs_ip, $rs_port);
-    $ret = $rs->smembers('urls');
-    foreach($ret as $herf) {
-        echo $herf . "<br/>";
-    }
-    ?>
-    </body>
-    </html>
+不太会PHP，所以就直接用python导出html网页，挂载到TOMCAT下就OK
+PYTHON脚本中会自动定时抓取，在main.py中可以设置相关参数，包括关键字，抓取间隔
+在spider.py中可以设置所要抓取的网站，打开看看就知道改哪了
 
-效果截图：
-    
-![1](https://lh3.googleusercontent.com/-mqsrIBbWj4A/UfiLMw4sW2I/AAAAAAAAAGE/_IHC__pJVxE/w958-h190-no/%25E5%25B1%258F%25E5%25B9%2595%25E5%25BF%25AB%25E7%2585%25A7+2013-07-31+%25E4%25B8%258A%25E5%258D%258811.56.48.png)
+运行版本PYTHON 2.7.5（BS4在PY2.6.6以下的版本需要额外的扩展库，CENTOS用户需要注意了，我的解决方案是装了两个PYTHON，当然这个版本也可以在windows下运行，WIN7用户不用担心）
+BeautifulSoup 4.2.1	http://www.crummy.com/software/BeautifulSoup/
+Redis-py    https://github.com/andymccurdy/redis-py
+requests	https://github.com/kennethreitz/requests
 
-此外，可以使用crontab或launchAgent(Mac OS X)把爬虫设定成定时任务，我的launchAgent如下：
-
-    <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/    DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-        <key>Label</key>
-        <string>com.lzrak47.spider.plist</string>
-        <key>ProgramArguments</key>
-        <array>
-            <string>/usr/local/bin/python</string>
-            <string>/Users/lzrak47/project/python/spider_python/main.py</string>
-        </array>
-        <key>RunAtLoad</key>
-        <true/>
-        <key>UserName</key>
-        <string>lzrak47</string>
-        <key>StartInterval</key>
-        <integer>3600</integer>
-    </dict>
-    </plist>
-
-Enjoy it。
-
+git clone到本地直接python setup install就OK
