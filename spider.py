@@ -78,7 +78,11 @@ class spider():
             )
 
     def spider_cap(self, rs, host, url, headers, href):
-        r = requests.get(url, headers = headers)
+        try:
+            r = requests.get(url, headers = headers)
+        except Exception,ex:
+            print Exception,":",ex
+            return
         #print url
         frs_soup = BeautifulSoup(r.text)
         frs_attrs = {
