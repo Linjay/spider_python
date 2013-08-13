@@ -50,6 +50,24 @@ class spider():
                 },
 
                 {
+                    'host' : 'http://bbs.byr.cn',
+                    'url'  : 'http://bbs.byr.cn/board/Job',
+                    'headers' : {
+                        "X-Requested-With" : "XMLHttpRequest",
+                    },
+                    'href' : "^/article/Job/\d+$",
+                },
+
+                {
+                    'host' : 'http://bbs.byr.cn',
+                    'url'  : 'http://bbs.byr.cn/board/ParttimeJob',
+                    'headers' : {
+                        "X-Requested-With" : "XMLHttpRequest",
+                    },
+                    'href' : "^/article/ParttimeJob/\d+$",
+                },
+
+                {
                     'host' : 'http://www.newsmth.net',
                     'url'  : 'http://www.newsmth.net/nForum/board/Career_Campus',
                     'headers' : {

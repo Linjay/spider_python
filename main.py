@@ -37,7 +37,8 @@ class TimeThread(threading.Thread):
         self.LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'     #日志格式
         self.LOG_LEVEL = logging.DEBUG                                               #日志级别
         self.REDIS_FREQUENCE = 10                                                    #Redis清空的频率
-        self.SPIDER_KEYS = ('Google', 'vmware', 'Adobe', u'广移', u'百度',u'阿里',u'腾讯',u'华为',u'联想')
+        self.SPIDER_KEYS = ('Google','IBM','Intel','VMware', 'Adobe', u'广移', u'百度',u'阿里',u'腾讯',u'华为',u'联想',
+                            u'工商银行',u'农业银行',u'建设银行',u'招商银行',u'航天',u'北京移动',u'北京电信')
 
     def run(self):
         global timer_interval
